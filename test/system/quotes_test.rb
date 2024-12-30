@@ -21,18 +21,20 @@ class QuotesTest < ApplicationSystemTestCase
     # and we click on "Create Quote"
     fill_in "Name", with: "Capybara quote"
     click_on "Create quote"
-
+    slow_down
     # We expect to be back on the page with the title "Quotes"
     # and to see our "Capybara quote" added to the list
     assert_selector "h1", text: "Quotes"
     assert_text "Capybara quote"
+    slow_down
   end
   
   test "showing a quote" do
     visit quotes_path
     click_link @quote.name
-
+    slow_down
     assert_selector "h1", text: @quote.name
+    slow_down
   end
 
   test "Updating a quote" do 

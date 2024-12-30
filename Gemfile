@@ -64,6 +64,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  # gem "webdrivers" # This screws up selenium when using newer versions of Chrome and chromedriver
 end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
