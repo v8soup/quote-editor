@@ -3,6 +3,7 @@ require 'capybara/rails'
 require 'selenium/webdriver'
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  
   driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
   Selenium::WebDriver::Chrome::Service.driver_path = '/usr/bin/chromedriver'
   
@@ -51,5 +52,15 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   # Add a method to slow down tests
   def slow_down
     sleep 3 # Adjust the sleep duration as needed
+  end
+
+  # helpers
+  def log_in_as(user)
+    visit new_session_path
+    fill_in "email_address", with: user.email_address
+    fill_in "password", with: 'password' # Use the password you set in your fixtures
+    # save_and_open_screenshot
+    click_on "sign_in_button"
+    # save_and_open_screenshot
   end
 end

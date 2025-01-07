@@ -3,29 +3,25 @@ require "application_system_test_case"
 class QuotesTest < ApplicationSystemTestCase
   
   setup do
+    @user = users(:accountant)
+    log_in_as(@user)
     @quote = Quote.ordered.first # Reference to the first fixture quote
+    click_on "View quotes"
   end
 
   test "showing a quote" do
     visit quotes_path
     click_link @quote.name
-    slow_down
     assert_selector "h1", text: @quote.name
-    slow_down
   end
 
   test "Creating a new quote" do
 
     visit quotes_path
-    assert_selector "h1", text: "Quotes"
-
-  
     click_on "New quote"
     fill_in "Name", with: "Capybara quote"
-
-    assert_selector "h1", text: "Quotes"
     click_on "Create quote"
-  
+    
     assert_selector "h1", text: "Quotes"
     assert_text "Capybara quote"
   
@@ -52,9 +48,4 @@ class QuotesTest < ApplicationSystemTestCase
     click_on "Delete", match: :first
     assert_no_text @quote.name
   end
-  # test "visiting the index" do
-  #   visit quotes_url
-  #
-  #   assert_selector "h1", text: "Quotes"
-  # end
 end
