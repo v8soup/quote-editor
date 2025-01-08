@@ -1,2 +1,13 @@
 <%= turbo_stream.remove @quote %>
 <%= render_turbo_stream_flash_messages %>
+
+<% unless current_company.quotes.exists? %>
+    <%=turbo_stream.update Quote.new do %>
+        <%= render partial: "quotes/empty_state" %>
+    <% end %>
+<% end %>
+
+<!-- NOTE: Hotrails tutorial Chapter 8 handles "Empty states with the only-child pseudo-class"
+    https://hotwire.dev/handbook/hotwire-turbo#empty-states-with-the-only-child-pseudo-class
+    BUT in rails 8 it's automatically handled by the turbo_stream.update Quote.new block above.
+    I didn't need to add the CSS class to the empty state partial. -->
