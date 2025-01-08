@@ -1,7 +1,8 @@
 <%# turbo_stream.prepend "quotes" do %>
     <%# render partial: "quotes/quote", locals: { quote: @quote } %>
-    <%# render @quote %> // This will also work
+    <%# render @quote %>  <!--This will also work --
 <%# end %>
 
 <%= turbo_stream.prepend "quotes", @quote %>
 <%= turbo_stream.update Quote.new, "" %>
+<%= render_turbo_stream_flash_messages %>
