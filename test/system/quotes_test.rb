@@ -1,6 +1,7 @@
 require "application_system_test_case"
 
 class QuotesTest < ApplicationSystemTestCase
+  # save_screenshot("screenshot_after_create.png")
   
   setup do
     @user = users(:accountant)

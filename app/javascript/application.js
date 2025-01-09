@@ -4,5 +4,5 @@ import "./controllers"
 
 import { Turbo } from "@hotwired/turbo-rails"
 // Turbo.session.drive = false
-console.log("Turbo Drive status:", Turbo.session.drive) // Debugging: Verify Turbo Drive status
+// console.log("Turbo Drive status:", Turbo.session.drive) // Debugging: Verify Turbo Drive status
 

@@ -59,8 +59,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     visit new_session_path
     fill_in "email_address", with: user.email_address
     fill_in "password", with: 'password' # Use the password you set in your fixtures
-    # save_and_open_screenshot
-    click_on "sign_in_button"
-    # save_and_open_screenshot
+    # Ensure the button is present and clickable
+    assert_selector "#sign_in_button"
+    find("#sign_in_button").click
+    slow_down
   end
 end
