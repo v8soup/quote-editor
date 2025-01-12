@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "line_items/new"
+  get "line_items/create"
+  get "line_items/edit"
+  get "line_items/update"
+  get "line_items/destroy"
   root "pages#home"
   resource :session
   resources :passwords, param: :token
@@ -16,6 +21,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :quotes do
-    resources :line_item_dates, except: [:index, :show]
+    resources :line_item_dates, except: [:index, :show] do
+      resources :line_items, except: [:index, :show]
+    end
   end
 end
